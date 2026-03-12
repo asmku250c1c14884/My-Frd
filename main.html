@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dear Frd ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff3366;
+            --secondary: #ff00cc;
+            --glass: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top left, #2b0057, #110022), #000;
+            color: var(--text);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Particles */
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            background: rgba(255, 51, 102, 0.2);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3.5rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 550px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+            transform: translateY(0);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #ff9a9e 50%, #fecfef 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .input-box {
+            margin-bottom: 2.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1.2rem 1.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.2rem;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+        }
+
+        .save-btn {
+            margin-top: 1.2rem;
+            padding: 0.9rem 2.8rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 3rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
+        }
+
+        .save-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 51, 102, 0.4);
+        }
+
+        #status {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            min-height: 1.2rem;
+        }
+
+        .question-section {
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .buttons-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            perspective: 1000px;
+        }
+
+        .btn {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 4rem;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s;
+            border: none;
+            position: relative;
+        }
+
+        .yes-btn {
+            background: #fff;
+            color: #2b0057;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1) rotate(-3deg);
+            background: #f8f8f8;
+        }
+
+        .no-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.1s ease-out;
+            /* Ultra snappy for continuous running */
+            will-change: transform, left, top;
+            z-index: 100;
+        }
+
+        /* Premium Glow Effects */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), transparent, var(--secondary));
+            z-index: -1;
+            border-radius: 2.5rem;
+            opacity: 0.3;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            cursor: pointer;
+            z-index: 5;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.5s ease, top 0.5s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .floating-emoji:hover {
+            transform: scale(1.3) rotate(15deg);
+        }
+
+        @keyframes floatEmoji {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hearts-container" id="hearts"></div>
+
+    <!-- Decorative floating emojis -->
+    <div class="floating-emoji"
+        style="top: 10%; left: 5%; font-size: 3rem; animation: floatEmoji 4s infinite ease-in-out;"
+        onclick="teleportEmoji(this)">✨</div>
+    <div class="floating-emoji"
+        style="bottom: 15%; right: 8%; font-size: 4rem; animation: floatEmoji 5s infinite ease-in-out reverse;"
+        onclick="teleportEmoji(this)">💖</div>
+    <div class="floating-emoji"
+        style="top: 20%; right: 10%; font-size: 2.5rem; animation: floatEmoji 3.5s infinite ease-in-out;"
+        onclick="teleportEmoji(this)">🌟</div>
+    <div class="floating-emoji"
+        style="bottom: 20%; left: 10%; font-size: 3.5rem; animation: floatEmoji 4.5s infinite ease-in-out;"
+        onclick="teleportEmoji(this)">🥰</div>
+
+    <div class="container">
+        <h1>My dear frd</h1>
+
+        <div class="input-box">
+            <input type="text" id="friendName" placeholder="Whats your Name?">
+            <button class="save-btn" onclick="saveData()">Save</button>
+            <div id="status"></div>
+        </div>
+
+        <div class="question-section">
+            <p class="question-text">Enna unnaku pudikum ma? ❤️</p>
+            <div class="buttons-wrap">
+                <button class="btn yes-btn" onclick="nextPage()">Yes</button>
+                <button class="btn no-btn" id="fleeBtn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('hearts');
+        for (let i = 0; i < 30; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.opacity = Math.random();
+            heartsContainer.appendChild(heart);
+        }
+
+        async function saveData() {
+            const name = document.getElementById('friendName').value;
+            const status = document.getElementById('status');
+            if (!name) return;
+
+            status.innerText = "Saving...";
+            status.style.color = "#aaa";
+
+            try {
+                const res = await fetch('http://localhost:3000/api/save-name', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+                if (res.ok) {
+                    status.innerText = "saved";
+                    status.style.color = "#4ade80";
+                    document.getElementById('friendName').value = "";
+                }
+            } catch (e) {
+                status.innerText = "saved";
+                status.style.color = "#4ade80";
+            }
+        }
+
+        function nextPage() {
+            window.location.href = 'celebration.html';
+        }
+
+        const fleeBtn = document.getElementById('fleeBtn');
+        const buffer = 180; // Increased buffer for smoother, earlier flee
+
+        document.addEventListener('mousemove', (e) => {
+            const rect = fleeBtn.getBoundingClientRect();
+            const btnCenter = {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+
+            const dx = e.clientX - btnCenter.x;
+            const dy = e.clientY - btnCenter.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < buffer) {
+                // FLEE SMOOTHLY ALL OVER SCREEN
+                const angle = Math.atan2(dy, dx);
+                const speed = 15; // Speed multiplier for continuous movement
+
+                // Jump to random location inside the screen
+                const padding = 100;
+                let newX = Math.random() * (window.innerWidth - padding * 2) + padding;
+                let newY = Math.random() * (window.innerHeight - padding * 2) + padding;
+
+                fleeBtn.style.position = 'fixed';
+                fleeBtn.style.left = newX + 'px';
+                fleeBtn.style.top = newY + 'px';
+                fleeBtn.style.transform = `scale(1.3) rotate(${Math.random() * 20 - 10}deg)`;
+            } else if (distance > buffer + 400) {
+                // Return home smoothly
+                fleeBtn.style.position = 'relative';
+                fleeBtn.style.left = 'auto';
+                fleeBtn.style.top = 'auto';
+                fleeBtn.style.transform = 'scale(1)';
+            }
+        });
+
+        function teleportEmoji(el) {
+            const padding = 100;
+            const x = Math.random() * (window.innerWidth - padding * 2) + padding;
+            const y = Math.random() * (window.innerHeight - padding * 2) + padding;
+
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            el.style.transform = 'scale(2) rotate(360deg)';
+            setTimeout(() => {
+                el.style.transform = 'scale(1) rotate(0deg)';
+            }, 500);
+        }
+
+    </script>
+</body>
+
+</html>
