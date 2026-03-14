@@ -379,7 +379,25 @@ function submitName(){
     return;
   }
   curName=v;
-  try{const l=JSON.parse(localStorage.getItem('_dfn')||'[]');if(!l.includes(v)){l.push(v);localStorage.setItem('_dfn',JSON.stringify(l))}}catch(e){}
+  try {
+    const l=JSON.parse(localStorage.getItem('_dfn')||'[]');
+    if(!l.includes(v)){
+      l.push(v);
+      localStorage.setItem('_dfn',JSON.stringify(l));
+    }
+  }catch(e){}
+
+  // Save to database
+  try {
+    fetch('/api/save-name', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: v })
+    }).catch(err => console.error('Error saving name to DB:', err));
+  } catch(e) {
+    console.error(e);
+  }
+
   document.getElementById('qName').textContent=v;
   // position no btn
   const nb=document.getElementById('noBtn');

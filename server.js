@@ -10,9 +10,9 @@ app.use(cors());
 app.use(express.static(__dirname)); // This serves your HTML files automatically
 app.use(express.json());
 
-// Redirect root to main.html
+// Redirect root to index.html
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/main.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 // PostgreSQL Connection String
