@@ -1,35 +1,31 @@
-<!-- ONLY CHANGE IS INSIDE submitName() FUNCTION -->
-
-<script>
 function submitName(){
-  const v=document.getElementById('nameIn').value.trim().toLowerCase();
+  const input = document.getElementById('nameIn');
+  const v = input.value.trim().toLowerCase();
 
-  // ✅ Allow only "subha"
+  // ✅ Only allow "subha"
   if(v !== "subha"){
-    const inp=document.getElementById('nameIn');
-    inp.classList.add('shake');
-    inp.style.borderColor='var(--rose)';
-    inp.value="";
-    inp.placeholder='Only Subha can enter 💔';
+    input.classList.add('shake');
+    input.style.borderColor='var(--rose)';
+    input.value = "";
+    input.placeholder='Only Subha can enter 💔';
 
     setTimeout(()=>{
-      inp.classList.remove('shake');
-      inp.style.borderColor='';
-      inp.placeholder='e.g. Enter Your Name , Arun…';
-    },2200);
+      input.classList.remove('shake');
+      input.style.borderColor='';
+      input.placeholder='e.g. Enter Your Name , Arun…';
+    },2000);
 
-    return; // ❌ stop here
+    return; // STOP here
   }
 
-  // ✅ Correct name → continue
-  curName="Subha";
+  // ✅ Correct name
+  curName = "Subha";
 
-  document.getElementById('qName').textContent=curName;
+  document.getElementById('qName').textContent = curName;
 
-  const nb=document.getElementById('noBtn');
-  nb.style.left=(innerWidth/2+60)+'px';
-  nb.style.top=(innerHeight*.65)+'px';
+  const nb = document.getElementById('noBtn');
+  nb.style.left = (innerWidth/2+60)+'px';
+  nb.style.top = (innerHeight*.65)+'px';
 
   showPage('pg3');
 }
-</script>
